@@ -13,6 +13,12 @@ PowerHue changes the color of lights based on power values from a sensor, such a
 - **Rest state configuration** for ambient lighting when power values are low.
 - Separate **brightness settings** for active and rest states.
 
+<center>
+  <a href="https://smartgateways.nl/en/" target="_blank">
+    <img src="https://smartgateways.nl/wp-content/uploads/2025/01/PowerHue-settings-by-Smart-Gateways.jpg" alt="PowerHue Settings" height="600" style="border-radius: 10px;">
+  </a>
+</center>
+
 ### Requirements:
 - Home Assistant (version 2024 or higher).
 - Compatible light entities that can change color (e.g., RGB lights, Philips HUE, or WLED).
