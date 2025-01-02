@@ -19,7 +19,7 @@ PowerHue changes the color of lights based on power values from a sensor, such a
 - A sensor providing real-time power values (e.g., [**Smart Meter**](https://smartgateways.nl/en/read-out-smart-meter-p1-dsmr/) from [**Smart Gateways**](https://smartgateways.nl/en/), solar panel sensor that measures real-time production).
 
 ### Installation:
-[![Open Your Home Assistant Instance](https://my.home-assistant.io/badges/blueprint_import.svg)](http://192.168.1.20:8123/_my_redirect/blueprint_import?blueprint_url=https%3A%2F%2Fraw.githubusercontent.com%2Frwanrooy%2FPowerHue%2Frefs%2Fheads%2Fmain%2Fha-blueprints%2Fpowerhue_by_smart_gateways.yaml)
+[![Open Your Home Assistant Instance](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https://raw.githubusercontent.com/rwanrooy/PowerHue/refs/heads/main/ha-blueprints/powerhue_by_smart_gateways.yaml)
 
 ### Configuration:
 - **Power Sensor**: The sensor that monitors power values (e.g., a **Smart Meter** or solar panel sensor).
