@@ -6,12 +6,6 @@ This automation changes the color of lights based on power values from a sensor,
   <img src="https://smartgateways.nl/wp-content/uploads/2020/11/smart-gateways-logo-240x133-1.jpg" alt="Smart Gateways Logo" height="200">
 </p>
 
-
-
-
-
-
-
 ### Features:
 - **Dynamic color changes** based on power values (green to blue to red).
 - **Configurable power thresholds** and color settings.
@@ -25,10 +19,7 @@ This automation changes the color of lights based on power values from a sensor,
 - A sensor providing real-time power values (e.g., [**Smart Meter**](https://smartgateways.nl/en/read-out-smart-meter-p1-dsmr/) from [**Smart Gateways**](https://smartgateways.nl/en/), solar panel sensor that measures real-time production).
 
 ### Installation:
-1. Download the `energy_light_follow_colors.yaml` file and place it in your Home Assistant automations folder (usually `config/automations/`).
-2. Add the blueprint to your Home Assistant configuration.
-3. Customize the blueprint by setting the appropriate input values, such as your power sensor and the lights you want to control.
-4. Reload automations in Home Assistant to apply the changes.
+[![Import PowerHue Blueprint](https://community-assets.home-assistant.io/original/3X/9/4/94379a79c42e3606b5b057dbd9fcf6092bb076f2.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https://github.com/rwanrooy/PowerHue/blob/main/ha-blueprints/powerhue_by_smart_gateways.yaml)
 
 ### Configuration:
 - **Power Sensor**: The sensor that monitors power values (e.g., a **Smart Meter** or solar panel sensor).
