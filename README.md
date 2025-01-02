@@ -2,9 +2,14 @@
 PowerHue changes the color of lights based on power values from a sensor, such as the current power level from a [**Smart Meter Gateway**](https://smartgateways.nl/en/read-out-smart-meter-p1-dsmr/) from [**Smart Gateways**](https://smartgateways.nl/en/) or the real-time energy production of solar panels. The light color smoothly transitions between colors based on the power values, providing a visual indication of power consumption or generation. The color starts from **green** when power is low, gradually transitions to **blue**, and shifts to **red** as power consumption or generation reaches its maximum.
 
 <p align="center">
-  <img src="https://smartgateways.nl/wp-content/uploads/2025/01/PowerHue-logo.png" alt="PowerHue Logo" height="200">
-  <img src="https://smartgateways.nl/wp-content/uploads/2020/11/smart-gateways-logo-240x133-1.jpg" alt="Smart Gateways Logo" height="200">
+  <a href="https://smartgateways.nl/en/" target="_blank">
+    <img src="https://smartgateways.nl/wp-content/uploads/2025/01/PowerHue-logo.png" alt="PowerHue Logo" height="200">
+  </a>
+  <a href="https://smartgateways.nl/en/" target="_blank">
+    <img src="https://smartgateways.nl/wp-content/uploads/2020/11/smart-gateways-logo-240x133-1.jpg" alt="Smart Gateways Logo" height="200">
+  </a>
 </p>
+
 
 ### Features:
 - **Dynamic color changes** based on power values (green to blue to red).
