@@ -38,6 +38,7 @@ This automation changes the color of lights based on power values from a sensor,
 - It is recommended to adjust the transition time for your lights or LEDs in the configuration for a smooth color transition. 
   For **WLED**, for example, you can configure it via:
   - **Configuration** → **LED & Hardware setup** → **Transitions** → **Default transition time**: 4500 ms (set just below the configured `update_interval`).
+- For other types of lights, the transition time can sometimes be set directly in the light entity settings within Home Assistant. Alternatively, it may require adjusting a parameter in Zigbee2MQTT. This varies depending on the type of light.
 
 ### Recommended Gateway for your Smart Meter:
 <center>
