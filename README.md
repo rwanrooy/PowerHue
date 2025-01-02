@@ -1,8 +1,16 @@
 # **PowerHue - Power-Driven Light Color Change Automation**
+This automation changes the color of lights based on power values from a sensor, such as the current power level from a [**Smart Meter**](https://smartgateways.nl/en/read-out-smart-meter-p1-dsmr/) from [**Smart Gateways**](https://smartgateways.nl/en/) or the real-time energy production of solar panels. The light color smoothly transitions between colors based on the power values, providing a visual indication of power consumption or generation. The color starts from **green** when power is low, gradually transitions to **blue**, and shifts to **red** as power consumption or generation reaches its maximum.
 
-This automation changes the color of lights based on power values from a sensor, such as the current power level from a [**Smart Meter Gateway**](https://smartgateways.nl/en/read-out-smart-meter-p1-dsmr/) from [**Smart Gateways**](https://smartgateways.nl/en/) or the real-time energy production of solar panels. The light color smoothly transitions between colors based on the power values, providing a visual indication of power consumption or generation. The color starts from **green** when power is low, gradually transitions to **blue**, and shifts to **red** as power consumption or generation reaches its maximum.
+<p align="center">
+  <img src="https://smartgateways.nl/wp-content/uploads/2025/01/PowerHue-logo.png" alt="PowerHue Logo" height="200">
+  <img src="https://smartgateways.nl/wp-content/uploads/2020/11/smart-gateways-logo-240x133-1.jpg" alt="Smart Gateways Logo" height="200">
+</p>
 
-[![Smart Gateways Logo](https://smartgateways.nl/wp-content/uploads/2020/11/smart-gateways-logo-240x133-1.jpg)](https://smartgateways.nl/en/)
+
+
+
+
+
 
 ### Features:
 - **Dynamic color changes** based on power values (green to blue to red).
@@ -35,17 +43,24 @@ This automation changes the color of lights based on power values from a sensor,
   - **Active Brightness**: Brightness when the light is actively changing color based on power values.
   - **Update Interval**: Frequency at which the light color will update (in seconds).
 
+### Tips for Configuration:
+- It is recommended to adjust the transition time for your lights or LEDs in the configuration for a smooth color transition. 
+  For **WLED**, for example, you can configure it via:
+  - **Configuration** → **LED & Hardware setup** → **Transitions** → **Default transition time**: 4500 ms (set just below the configured `update_interval`).
+
+### Recommended Gateway for your Smart Meter:
+<center>
+  <a href="https://smartgateways.nl/en/" target="_blank">
+    <img src="https://smartgateways.nl/wp-content/uploads/2024/04/Smart-Meter-P1-Gateway-with-google-hub.png" alt="Smart Meter P1 Gateway" height="300" style="border-radius: 10px;">
+  </a>
+</center>
+
 ### License Terms:
 1. This blueprint is free for personal and commercial use.
 2. Modification of the blueprint code is **not allowed**.
 3. Redistribution, republishing, or selling of this blueprint is **strictly prohibited**.
 4. All copyright and license notices must be retained.
 5. The blueprint may only be obtained through official **Smart Gateways** channels.
-
-### Tips:
-- It is recommended to adjust the transition time for your lights or LEDs in the configuration for a smooth color transition. 
-  For **WLED**, for example, you can configure it via:
-  - **Configuration** → **LED & Hardware setup** → **Transitions** → **Default transition time**: 4500 ms (set just below the configured `update_interval`).
 
 **Created by Roel van Wanrooy**  
 Smart Gateways B.V. ([https://smartgateways.nl](https://smartgateways.nl/en))  
