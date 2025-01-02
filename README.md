@@ -1,5 +1,5 @@
 # **PowerHue - Power-Driven Light Color Change Automation**
-This automation changes the color of lights based on power values from a sensor, such as the current power level from a [**Smart Meter**](https://smartgateways.nl/en/read-out-smart-meter-p1-dsmr/) from [**Smart Gateways**](https://smartgateways.nl/en/) or the real-time energy production of solar panels. The light color smoothly transitions between colors based on the power values, providing a visual indication of power consumption or generation. The color starts from **green** when power is low, gradually transitions to **blue**, and shifts to **red** as power consumption or generation reaches its maximum.
+PowerHue changes the color of lights based on power values from a sensor, such as the current power level from a [**Smart Meter Gateway**](https://smartgateways.nl/en/read-out-smart-meter-p1-dsmr/) from [**Smart Gateways**](https://smartgateways.nl/en/) or the real-time energy production of solar panels. The light color smoothly transitions between colors based on the power values, providing a visual indication of power consumption or generation. The color starts from **green** when power is low, gradually transitions to **blue**, and shifts to **red** as power consumption or generation reaches its maximum.
 
 <p align="center">
   <img src="https://smartgateways.nl/wp-content/uploads/2025/01/PowerHue-logo.png" alt="PowerHue Logo" height="200">
@@ -37,7 +37,7 @@ This automation changes the color of lights based on power values from a sensor,
 ### Tips for Configuration:
 - It is recommended to adjust the transition time for your lights or LEDs in the configuration for a smooth color transition. 
   For **WLED**, for example, you can configure it via:
-  - **Configuration** → **LED & Hardware setup** → **Transitions** → **Default transition time**: 4500 ms (set just below the configured `update_interval`).
+  - **Configuration** → **LED & Hardware setup** → **Transitions** → **Default transition time**: 4500 ms (set just below the configured update_interval in the settings of the automation).
 - For other types of lights, the transition time can sometimes be set directly in the light entity settings within Home Assistant. Alternatively, it may require adjusting a parameter in Zigbee2MQTT. This varies depending on the type of light.
 
 ### Recommended Gateway for your Smart Meter:
