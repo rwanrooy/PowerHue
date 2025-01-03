@@ -1,262 +1,284 @@
-blueprint:
-  name: PowerHue - Power-Driven Light Color Change Automation
-  description: |
+blueprint:  
+  name: PowerHue - Power-Driven Light Color Change Automation  
+  description: |  
+    # **PowerHue - Power-Driven Light Color Change Automation**  
+    PowerHue changes the color of lights based on power values from a sensor, such as the real-time power level from a [**Smart Meter Gateway**](https://smartgateways.nl/en/read-out-smart-meter-p1-dsmr/) from [**Smart Gateways**](https://smartgateways.nl/en/) or the real-time energy production of solar panels. The light color smoothly transitions between colors based on the power values, providing a visual indication of power consumption or generation. The color starts from **green** when power is low, gradually transitions to **blue**, and shifts to **red** as power consumption or generation reaches its maximum.  
+
+    ### Features:  
+    - **Dynamic color changes** based on power values (green to blue to red).  
+    - **Configurable power thresholds** and color settings.  
+    - **Adjustable update frequency** for smooth transitions.  
+    - **Rest state configuration** for ambient lighting when power values are low.  
+    - Separate **brightness settings** for active and rest states.  
+
+    ### Requirements:  
+    - Home Assistant (version 2024 or higher).  
+    - Compatible light entities that can change color (e.g., RGB lights, Philips HUE, or WLED).  
+    - A sensor providing real-time power values (e.g., [**Smart Meter**](https://smartgateways.nl/en/read-out-smart-meter-p1-dsmr/) from [**Smart Gateways**](https://smartgateways.nl/en/), solar panel sensor that measures real-time production).  
+
+    ### Configuration:  
+    - **Power Sensor**: The sensor that monitors power values (e.g., a **Smart Meter** or solar panel sensor).  
+    - **Energy Lights**: The lights that will change color based on power values.  
+    - **Power Thresholds**: Set the minimum and maximum power levels that the sensor can report. The automation will only work when the sensor values are within this range.  
+      - **Minimum Power Level**: Minimum power level for the automation to activate.  
+      - **Maximum Power Level**: Maximum power level for the automation to activate.  
+    - **Rest Power Levels**: Configure the power levels that correspond to the rest state (when power is low or there's no activity). The light will show a static color (ambient lighting) during this period.  
+      - **Rest Color**: Color used for ambient lighting during low power periods.  
+      - **Rest Brightness**: Brightness used for ambient lighting.  
+    - **Active Mode**: Configure the brightness and update frequency when the light is  
 
 
-    # **PowerHue - Power-Driven Light Color Change Automation**
-    PowerHue changes the color of lights based on power values from a sensor, such as the real-time power level from a [**Smart Meter Gateway**](https://smartgateways.nl/en/read-out-smart-meter-p1-dsmr/) from [**Smart Gateways**](https://smartgateways.nl/en/) or the real-time energy production of solar panels. The light color smoothly transitions between colors based on the power values, providing a visual indication of power consumption or generation. The color starts from **green** when power is low, gradually transitions to **blue**, and shifts to **red** as power consumption or generation reaches its maximum.
+    <hr>
 
-    <center>
-      <table>
-        <tr>
-          <td><a href="https://smartgateways.nl/en/" target="_blank"><img src="https://smartgateways.nl/wp-content/uploads/2025/01/PowerHue-logo.png" alt="PowerHue Logo" width="auto" height="150" style="border-radius: 10px;"></a></td>
-          <td><a href="https://smartgateways.nl/en/" target="_blank"><img src="https://smartgateways.nl/wp-content/uploads/2020/11/smart-gateways-logo-240x133-1.jpg" alt="Smart Gateways Logo" height="150" style="border-radius: 10px;"></a></td>
-        </tr>
-      </table>
+    ### 💡 Support My Work for the Home Assistant Community  
+
+    What started as a personal hobby—creating smart sensors and gateways for my own use—has grown over the years into something much bigger. Through word of mouth, these solutions gained popularity among smart home enthusiasts, eventually leading to the creation of SmartGateways.nl.  
+
+    This Home Assistant integration, which changes light colors based on energy levels, is another project born from that same passion and hobby. I love developing and sharing smart solutions with like-minded enthusiasts. While these projects take significant time and effort, it’s incredibly rewarding to see others enjoy and benefit from them.  
+
+    If you find this integration useful and would like to support me in creating more innovative projects, you can sponsor me by purchasing sensors through SmartGateways.nl or by making a donation via PayPal.  
+
+    Your support helps me to:  
+
+    • Develop new features and improvements  
+    • Keep the integration updated for the latest Home Assistant versions  
+    • Continue sharing fun and practical solutions with the community  
+
+    👉 Donate via [**PayPal**](https://www.paypal.me/roelvanwanrooy)
+    👉 Buy sensors and support my work via [**SmartGateways.nl**](https://smartgateways.nl/)
+
+    <hr>
+
+    <center>  
+      <table width="100%">  
+        <tr>  
+          <td width="25%" align="center"><a href="https://smartgateways.nl/en/read-out-smart-meter-p1-dsmr/" target="_blank"><img src="https://github.com/rwanrooy/PowerHue/raw/main/photos/smart%20meter%20p1%20dsmr%20home%20assistant.jpg" alt="Smart Meter Gateway" width="auto" height="150" style="border-radius: 10px;"></a></td>  
+          <td width="25%" align="center"><a href="https://smartgateways.nl/en/make-your-water-meter-smart/" target="_blank"><img src="https://github.com/rwanrooy/PowerHue/raw/main/photos/watermeter%20kit%20home%20assistant.jpg" alt="Watermeter Gateway" width="auto" height="150" style="border-radius: 10px;"></a></td>  
+          <td width="25%" align="center"><a href="https://smartgateways.nl/en/make-your-gas-meter-smart/" target="_blank"><img src="https://github.com/rwanrooy/PowerHue/raw/main/photos/gasmeter%20gateway%20home%20assistant.jpg" alt="Gasmeter Gateway" width="auto" height="150" style="border-radius: 10px;"></a></td>  
+          <td width="25%" align="center"><a href="https://smartgateways.nl/en/make-your-s0-meter-smart/" target="_blank"><img src="https://github.com/rwanrooy/PowerHue/raw/main/photos/s0%20gateway%20home%20assistant.jpg" alt="S0 Gateway" width="auto" height="150" style="border-radius: 10px;"></a></td>  
+        </tr>  
+        <tr>  
+          <td width="25%"><strong><a href="https://smartgateways.nl/en/read-out-smart-meter-p1-dsmr/" target="_blank">Smart Meter Gateway</a></strong>: <strong>Connect your Smart Meter to Home Assistant.</strong><br><br>It reads data from your smart meter and makes it available via a user-friendly online dashboard or integrates directly with your home automation system. This way, you can identify where to save energy, from electricity and gas to the consumption of your charging station. The gateway works with almost all smart meters in Europe that are equipped with a P1 port and follow the D(SMR) E(SMR) standard, including in the Netherlands, Belgium, Sweden, Denmark, Finland, Hungary, Ireland, Lithuania, and Switzerland.</td>  
+          <td width="25%"><strong><a href="https://smartgateways.nl/en/make-your-water-meter-smart/" target="_blank">Watermeter Gateway</a></strong>: <strong>Transform your analog water meter into a smart device.</strong><br><br>You can track how much water you're using during activities like showering, filling a bathtub, washing hands, or watering your garden. The gateway is compatible with most analog water meters and supports popular home automation platforms like Home Assistant, Domoticz, and Homey, giving you exclusive access to the Smart Gateways Water Meter Dashboard for Home Assistant. The device uses open standards like REST-API and MQTT, allowing it to integrate with virtually any software and cloud system.</td>  
+          <td width="25%"><strong><a href="https://smartgateways.nl/en/make-your-gas-meter-smart/" target="_blank">Gasmeter Gateway</a></strong>: <strong>Turn your analog gas meter into a smart device.</strong><br><br>Whether you're heating your home, showering, or taking a bath, you can monitor exactly how much gas you're using. The gateway is compatible with most analog gas meters from brands such as Itron, Actaris, Elster, Gallus, and Honeywell. It works with popular home automation platforms like Home Assistant, Domoticz, and Homey, and offers exclusive access to the Smart Gateways Gas Meter Dashboard for Home Assistant.</td>  
+          <td width="25%"><strong><a href="https://smartgateways.nl/en/make-your-s0-meter-smart/" target="_blank">S0 Gateway</a></strong>: <strong>Convert your S0 pulse-based meter into a smart device.</strong><br><br>It is compatible with most intermediate meters that feature an S0 pulse output, such as Siemens, ABB, Landis+Gyr, Iskraemeco, Kamstrup, EMH Metering, and Schneider Electric. The gateway integrates with popular home automation software like Home Assistant, Domoticz, and Homey, and gives you exclusive access to the Smart Gateways S0 Gateway Dashboard for Home Assistant. Using open standards such as REST-API and MQTT, it connects to almost any software and cloud platform.</td>  
+        </tr>  
+      </table>  
+    </center>  
+
+    <hr>
+    
+    <center>  
+      <table width="100%">  
+        <tr>  
+          <td width="25%" align="center"><a href="https://smartgateways.nl/en/product/water-level-gateway/" target="_blank"><img src="https://github.com/rwanrooy/PowerHue/raw/main/photos/waterlevel%20gateway%20home%20assistant.png" alt="Waterlevel Gateway" width="auto" height="150" style="border-radius: 10px;"></a></td>  
+          <td width="25%" align="center"><a href="https://smartgateways.nl/en/product/distancemeter-wifi-gateway/" target="_blank"><img src="https://github.com/rwanrooy/PowerHue/raw/main/photos/distancemeter%20gateway%20home%20assistant.jpg" alt="Distancemeter Gateway" width="auto" height="150" style="border-radius: 10px;"></a></td>  
+          <td width="25%" align="center"><a href="https://smartgateways.nl/en/make-your-kamstrup-multical-and-flowiq-meter-smart/" target="_blank"><img src="https://github.com/rwanrooy/PowerHue/raw/main/photos/kamstrup%20gateway%20home%20assistant.jpg" alt="Kamstrup Gateway" width="auto" height="150" style="border-radius: 10px;"></a></td>  
+          <td width="25%" align="center"><a href="https://smartgateways.nl/en/make-your-district-heating-from-vattenfall-smart-with-warmtelink-gateway/" target="_blank"><img src="https://github.com/rwanrooy/PowerHue/raw/main/photos/warmtelink%20gateway%20home%20assistant.jpg" alt="WarmteLink Gateway" width="auto" height="150" style="border-radius: 10px;"></a></td>  
+        </tr>  
+        <tr>  
+          <td width="25%"><strong><a href="https://smartgateways.nl/en/product/water-level-gateway/" target="_blank">Waterlevel Gateway</a></strong>: <strong>Monitor water levels in tanks, rain barrels, and ponds.</strong><br><br>With a measuring range from 5 cm to 400 cm and an accuracy of 1 cm, it integrates seamlessly with Home Assistant, Domoticz, and Homey, or can be used independently via an internal web server. It supports MQTT and REST-API for easy cloud integration and offers energy-efficient operation. The gateway is perfect for automating water management tasks, including tank or pond refilling, and includes automatic firmware updates for continuous improvements.</td>  
+          <td width="25%"><strong><a href="https://smartgateways.nl/en/product/distancemeter-wifi-gateway/" target="_blank">Distancemeter Gateway</a></strong>: <strong>Measure water levels with sonar technology.</strong><br><br>It uses sonar technology to measure water levels in tanks, rain barrels, and ponds, with a range of 20 to 450 cm and a precision of 1 cm. It offers the same features as the Waterlevel Gateway, including compatibility with Home Assistant, Domoticz, Homey, and other automation software. Supporting MQTT and REST-API, it provides real-time data monitoring via an internal web server, making it ideal for water management and automation.</td>  
+          <td width="25%"><strong><a href="https://smartgateways.nl/en/make-your-kamstrup-multical-and-flowiq-meter-smart/" target="_blank">Kamstrup Gateway</a></strong>: <strong>Monitor your Kamstrup energy and water consumption.</strong><br><br>The Kamst-IR Gateway provides real-time insights into energy and water consumption from Kamstrup Multical heat and water meters, including FlowIQ water meters. It offers seamless integration with popular home automation software like Home Assistant, Domoticz, and Homey, and supports open standards like MQTT and REST-API for broad compatibility. The gateway is easy to install, and it can monitor your consumption continuously, even without automation software, through an online energy dashboard.</td>  
+          <td width="25%"><strong><a href="https://smartgateways.nl/en/make-your-district-heating-from-vattenfall-smart-with-warmtelink-gateway/" target="_blank">WarmteLink Gateway</a></strong>: <strong>Monitor your Vattenfall district heating system in real time.</strong><br><br>The WarmteLink Gateway for Vattenfall brings smart monitoring to your district heating system by providing real-time insights into energy consumption. Easily connected to Vattenfall's WarmteLink P1 smart meters, this gateway allows you to track energy use for heating, showering, and more. It integrates seamlessly with home automation platforms like Home Assistant, Domoticz, and Homey, and supports open standards such as MQTT and REST-API. The gateway also offers exclusive access to the Smart Gateways Energy Dashboard for additional data visualization.</td>  
+        </tr>  
+      </table>  
     </center>
 
-    ### Features:
-    - **Dynamic color changes** based on power values (green to blue to red).
-    - **Configurable power thresholds** and color settings.
-    - **Adjustable update frequency** for smooth transitions.
-    - **Rest state configuration** for ambient lighting when power values are low.
-    - Separate **brightness settings** for active and rest states.
-
-    ### Requirements:
-    - Home Assistant (version 2024 or higher).
-    - Compatible light entities that can change color (e.g., RGB lights, Philips HUE, or WLED).
-    - A sensor providing real-time power values (e.g., [**Smart Meter**](https://smartgateways.nl/en/read-out-smart-meter-p1-dsmr/) from [**Smart Gateways**](https://smartgateways.nl/en/), solar panel sensor that measures real-time production).
-
-    ### Configuration:
-    - **Power Sensor**: The sensor that monitors power values (e.g., a **Smart Meter** or solar panel sensor).
-    - **Energy Lights**: The lights that will change color based on power values.
-    - **Power Thresholds**: Set the minimum and maximum power levels that the sensor can report. The automation will only work when the sensor values are within this range.
-      - **Minimum Power Level**: Minimum power level for the automation to activate.
-      - **Maximum Power Level**: Maximum power level for the automation to activate.
-    - **Rest Power Levels**: Configure the power levels that correspond to the rest state (when power is low or there's no activity). The light will show a static color (ambient lighting) during this period.
-      - **Rest Color**: Color used for ambient lighting during low power periods.
-      - **Rest Brightness**: Brightness used for ambient lighting.
-    - **Active Mode**: Configure the brightness and update frequency when the light is actively changing based on power consumption.
-      - **Active Brightness**: Brightness when the light is actively changing color based on power values.
-      - **Update Interval**: Frequency at which the light color will update (in seconds).
-
-    ### Tips for Configuration:
-    - It is recommended to adjust the transition time for your lights or LEDs in the configuration for a smooth color transition. 
-      For **WLED**, for example, you can configure it via:
-      - **Configuration** → **LED & Hardware setup** → **Transitions** → **Default transition time**: 4500 ms (set just below the configured `update_interval`).
-
-    ### Recommended Gateway for your Smart Meter:
-    <div style="text-align: left;">
-      <a href="https://smartgateways.nl/en/" target="_blank">
-        <img src="https://smartgateways.nl/wp-content/uploads/2024/04/Smart-Meter-P1-Gateway-with-google-hub.png" alt="Smart Meter P1 Gateway" height="300" style="border-radius: 10px;">
-      </a>
-    </div>
-
-
-    ### License Terms:
-    1. This blueprint is free for personal and commercial use.
-    2. Modification of the blueprint code is **not allowed**.
-    3. Redistribution, republishing, or selling of this blueprint is **strictly prohibited**.
-    4. All copyright and license notices must be retained.
-    5. The blueprint may only be obtained through official **Smart Gateways** channels.
-
-    **Created by Roel van Wanrooy**  
-    Smart Gateways B.V. ([https://smartgateways.nl](https://smartgateways.nl/en))  
-    Copyright (c) 2025 Smart Gateways B.V.  
-    All rights reserved.
 
 
 
-
-
-
-  domain: automation  
-  input:  
-    power_sensor:  
-      name: Power Sensor  
-      description: >-  
-        Select the sensor that monitors power values. This can be a smart meter   
-        power reading or solar panel production sensor. The values from this sensor  
-        will determine the light colors.  
-      selector:  
-        entity:  
-          domain: sensor  
-    energy_lights:  
-      name: Energy Lights  
-      description: >-  
-        Select the lights that should change color based on the power values.  
-        These lights will dynamically show power changes through color transitions.  
-        Multiple lights can be selected to create synchronized effects.  
-      selector:  
-        target:  
-          entity:  
-            domain: light  
-    power_threshold_low:  
-      name: Minimum Power Level of Power Sensor  
-      description: >-  
-        Set the absolute minimum power level that the sensor can report (can be negative).  
-        The automation will only work when sensor values are above this threshold.  
-        For solar panels, this is typically 0, for smart meters this might be negative  
-        to show power consumption. Values below this will not trigger the automation.  
-      default: 0  
-      selector:  
-        number:  
-          min: -50000  
-          max: 50000  
-          step: 1  
-          unit_of_measurement: W  
-    power_threshold_high:  
-      name: Maximum Power Level of Power Sensor  
-      description: >-  
-        Set the absolute maximum power level that the sensor can report (can be negative).  
-        The automation will only work when sensor values are below this threshold.  
-        For solar panels, this might be your maximum system capacity. Values above  
-        this will not trigger the automation. Ensure this is set higher than your  
-        expected maximum power value.  
-      default: 1000  
-      selector:  
-        number:  
-          min: -50000  
-          max: 50000  
-          step: 1  
-          unit_of_measurement: W  
-    default_power_low:  
-      name: Minimum Power Level When Light Has to Be in Rest Color  
-      description: >-  
-        Lower bound for rest mode activation. When power values are between the minimum  
-        and maximum rest levels, the light will use the rest color and brightness.  
-        Useful for evening hours when you want ambient lighting despite low/no production.  
-        Set this to a value where you want the lights to switch to rest mode.  
-      default: 0  
-      selector:  
-        number:  
-          min: -50000  
-          max: 50000  
-          step: 1  
-          unit_of_measurement: W  
-    default_power_high:  
-      name: Maximum Power Level When Light Has to Be in Rest Color  
-      description: >-  
-        Upper bound for rest mode activation. When power values exceed this level,  
-        the light will start showing dynamic colors based on power values.  
-        Set this higher than the minimum rest level but lower than when active  
-        color changes should begin. This creates a smooth transition between  
-        rest mode and active color changing.  
-      default: 50  
-      selector:  
-        number:  
-          min: -50000  
-          max: 50000  
-          step: 1  
-          unit_of_measurement: W  
-    rest_color:  
-      name: Rest Color  
-      description: >-  
-        Select the color for the light when in rest mode (between rest power levels).  
-        This color will be used for ambient lighting when power values are low,  
-        typically during evening hours or periods of low activity. Choose a comfortable  
-        color suitable for ambient lighting.  
-      default:  
-        - 255  
-        - 172  
-        - 32  
-      selector:  
-        color_rgb:  
-    rest_brightness:  
-      name: Rest Brightness  
-      description: >-  
-        Set the brightness level for rest mode. Consider setting this lower than  
-        the active brightness for comfortable ambient lighting during evening hours  
-        or periods of low activity. Values range from 0 (off) to 255 (maximum brightness).  
-      default: 255  
-      selector:  
-        number:  
-          min: 0  
-          max: 255  
-          step: 1  
-    active_brightness:  
-      name: Active Brightness  
-      description: >-  
-        Set the brightness level for when the light is actively showing power changes.  
-        This determines how bright the light will be during dynamic color changes.  
-        Usually set higher than rest brightness for better visibility of power changes.  
-        Values range from 0 (off) to 255 (maximum brightness).  
-      default: 255  
-      selector:  
-        number:  
-          min: 0  
-          max: 255  
-          step: 1  
-    update_interval:  
-      name: Update Interval  
-      description: >-  
-        How frequently the light color should update based on power values.  
-        Shorter intervals (like /1 or /5) give more responsive updates but increase system load.  
-        Longer intervals (like /30 or /60) are more suitable for slowly changing values.  
-      default: "/5"  
-      selector:  
-        select:  
-          options:  
-            - "/1"  
-            - "/5"  
-            - "/10"  
-            - "/15"  
-            - "/20"  
-            - "/25"  
-            - "/30"  
-            - "/40"  
-            - "/50"  
-            - "/60"
-
-trigger:  
-  - platform: time_pattern  
-    seconds: !input update_interval  
-
-variables:  
-  power_sensor: !input power_sensor  
-  power_threshold_low: !input power_threshold_low  
-  power_threshold_high: !input power_threshold_high  
-  default_power_low: !input default_power_low  
-  default_power_high: !input default_power_high  
-  rest_color: !input rest_color  
-  rest_brightness: !input rest_brightness  
-  active_brightness: !input active_brightness  
-  current_power: "{{ states(power_sensor) | float }}"  
-  update_interval: !input update_interval  
-
-condition:  
-  - condition: template  
-    value_template: >-  
-      {{ current_power > power_threshold_low and  
-         current_power <= power_threshold_high }}  
-
-action:  
-  - choose:  
-      - conditions:  
-          - condition: template  
-            value_template: >-  
-              {{ current_power >= default_power_low and  
-                 current_power < default_power_high }}  
-        sequence:  
-          - service: light.turn_on  
-            target: !input energy_lights  
-            data:  
-              rgb_color: !input rest_color  
-              brightness: !input rest_brightness  
-              transition: 4  
-      - conditions:  
-          - condition: template  
-            value_template: >-  
-              {{ current_power > power_threshold_low and  
-                 current_power <= power_threshold_high }}  
-        sequence:  
-          - service: light.turn_on  
-            target: !input energy_lights  
-            data:  
-              hs_color:  
-                - >-  
-                    {{ (120 + ((current_power / power_threshold_high) * 235)) | round(0) }}  
-                - 100  
-              brightness: !input active_brightness  
-              transition: 4  
+  
+  domain: automation
+  input:
+    power_sensor:
+      name: Power Sensor
+      description: 'Select the sensor that monitors power values. This can be a smart
+        meter    power reading or solar panel production sensor. The values from this
+        sensor   will determine the light colors.  '
+      selector:
+        entity:
+          domain:
+          - sensor
+          multiple: false
+    energy_lights:
+      name: Energy Lights
+      description: 'Select the lights that should change color based on the power
+        values.   These lights will dynamically show power changes through color transitions.   Multiple
+        lights can be selected to create synchronized effects.  '
+      selector:
+        target:
+          entity:
+          - domain:
+            - light
+    power_threshold_low:
+      name: Minimum Power Level of Power Sensor
+      description: 'Set the absolute minimum power level that the sensor can report
+        (can be negative).   The automation will only work when sensor values are
+        above this threshold.   For solar panels, this is typically 0, for smart meters
+        this might be negative   to show power consumption. Values below this will
+        not trigger the automation.  '
+      default: 0
+      selector:
+        number:
+          min: -50000.0
+          max: 50000.0
+          step: 1.0
+          unit_of_measurement: W
+          mode: slider
+    power_threshold_high:
+      name: Maximum Power Level of Power Sensor
+      description: 'Set the absolute maximum power level that the sensor can report
+        (can be negative).   The automation will only work when sensor values are
+        below this threshold.   For solar panels, this might be your maximum system
+        capacity. Values above   this will not trigger the automation. Ensure this
+        is set higher than your   expected maximum power value.  '
+      default: 1000
+      selector:
+        number:
+          min: -50000.0
+          max: 50000.0
+          step: 1.0
+          unit_of_measurement: W
+          mode: slider
+    default_power_low:
+      name: Minimum Power Level When Light Has to Be in Rest Color
+      description: 'Lower bound for rest mode activation. When power values are between
+        the minimum   and maximum rest levels, the light will use the rest color and
+        brightness.   Useful for evening hours when you want ambient lighting despite
+        low/no production.   Set this to a value where you want the lights to switch
+        to rest mode.  '
+      default: 0
+      selector:
+        number:
+          min: -50000.0
+          max: 50000.0
+          step: 1.0
+          unit_of_measurement: W
+          mode: slider
+    default_power_high:
+      name: Maximum Power Level When Light Has to Be in Rest Color
+      description: 'Upper bound for rest mode activation. When power values exceed
+        this level,   the light will start showing dynamic colors based on power values.   Set
+        this higher than the minimum rest level but lower than when active   color
+        changes should begin. This creates a smooth transition between   rest mode
+        and active color changing.  '
+      default: 50
+      selector:
+        number:
+          min: -50000.0
+          max: 50000.0
+          step: 1.0
+          unit_of_measurement: W
+          mode: slider
+    rest_color:
+      name: Rest Color
+      description: 'Select the color for the light when in rest mode (between rest
+        power levels).   This color will be used for ambient lighting when power values
+        are low,   typically during evening hours or periods of low activity. Choose
+        a comfortable   color suitable for ambient lighting.  '
+      default:
+      - 255
+      - 172
+      - 32
+      selector:
+        color_rgb: {}
+    rest_brightness:
+      name: Rest Brightness
+      description: 'Set the brightness level for rest mode. Consider setting this
+        lower than   the active brightness for comfortable ambient lighting during
+        evening hours   or periods of low activity. Values range from 0 (off) to 255
+        (maximum brightness).  '
+      default: 255
+      selector:
+        number:
+          min: 0.0
+          max: 255.0
+          step: 1.0
+          mode: slider
+    active_brightness:
+      name: Active Brightness
+      description: 'Set the brightness level for when the light is actively showing
+        power changes.   This determines how bright the light will be during dynamic
+        color changes.   Usually set higher than rest brightness for better visibility
+        of power changes.   Values range from 0 (off) to 255 (maximum brightness).  '
+      default: 255
+      selector:
+        number:
+          min: 0.0
+          max: 255.0
+          step: 1.0
+          mode: slider
+    update_interval:
+      name: Update Interval
+      description: 'How frequently the light color should update based on power values.   Shorter
+        intervals (like /1 or /5) give more responsive updates but increase system
+        load.   Longer intervals (like /30 or /60) are more suitable for slowly changing
+        values.  '
+      default: /5
+      selector:
+        select:
+          options:
+          - /1
+          - /5
+          - /10
+          - /15
+          - /20
+          - /25
+          - /30
+          - /40
+          - /50
+          - /60
+          sort: false
+          custom_value: false
+          multiple: false
+  source_url: https://raw.githubusercontent.com/rwanrooy/PowerHue/refs/heads/main/ha-blueprints/powerhue_by_smart_gateways.yaml
+trigger:
+- platform: time_pattern
+  seconds: !input update_interval
+variables:
+  power_sensor: !input power_sensor
+  power_threshold_low: !input power_threshold_low
+  power_threshold_high: !input power_threshold_high
+  default_power_low: !input default_power_low
+  default_power_high: !input default_power_high
+  rest_color: !input rest_color
+  rest_brightness: !input rest_brightness
+  active_brightness: !input active_brightness
+  current_power: '{{ states(power_sensor) | float }}'
+  update_interval: !input update_interval
+condition:
+- condition: template
+  value_template: "{{ current_power > power_threshold_low and  \n   current_power
+    <= power_threshold_high }}  "
+action:
+- choose:
+  - conditions:
+    - condition: template
+      value_template: "{{ current_power >= default_power_low and  \n   current_power
+        < default_power_high }}  "
+    sequence:
+    - service: light.turn_on
+      target: !input energy_lights
+      data:
+        rgb_color: !input rest_color
+        brightness: !input rest_brightness
+        transition: 4
+  - conditions:
+    - condition: template
+      value_template: "{{ current_power > power_threshold_low and  \n   current_power
+        <= power_threshold_high }}  "
+    sequence:
+    - service: light.turn_on
+      target: !input energy_lights
+      data:
+        hs_color:
+        - '{{ (120 + ((current_power / power_threshold_high) * 235)) | round(0) }}  '
+        - 100
+        brightness: !input active_brightness
+        transition: 4
 mode: single
+
+
+
+
