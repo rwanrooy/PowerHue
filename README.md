@@ -3,15 +3,9 @@
 
 PowerHue is a versatile Home Assistant automation blueprint that lets you easily change the color of your lights based on sensor values such as power usage, solar production, temperature, or other variables. Whether you're looking to **change LED colour based on sensor value**, **change light color based on temperature**, or define **color values for lights using variables**, this blueprint makes it simple and effective.  
 
-Lights can automatically transition between colors, starting with **green** for low values, **blue** for moderate levels, and **red** for high values. This is perfect for visually tracking data such as power consumption from a [**Smart Meter Gateway**](https://smartgateways.nl/en) from [**Smart Gateways**](https://smartgateways.nl/en/), energy production from solar panels, or temperature readings.  
-
-This Home Assistant automation also allows you to **set RGB light colors based on sensor value**, providing dynamic lighting control that responds to real-time data. Use it to create practical setups, like turning lights green when solar production is optimal, red when power usage is high, or blue during cold weather.  
+**Set RGB light colors based on sensor value** and automatically transition between colors, starting with **green** for low values, **blue** for moderate levels, and **red** for high values. This is perfect for visually tracking data such as power consumption from a [**Smart Meter Gateway**](https://smartgateways.nl/en) from [**Smart Gateways**](https://smartgateways.nl/en/), energy production from solar panels, or temperature readings.  
 
 While PowerHue is primarily designed for use with power usage data, it can be connected to virtually any sensor in Home Assistant, offering endless customization possibilities. Whether you're trying to **automate changing light color**, **help with RGB LED color based on temperature**, or explore **changing lamp color based on a variable**, PowerHue offers a flexible and intuitive solution for your smart lighting needs in Home Assistant.
-
-
-
-
 
 <p align="center">
   <a href="https://smartgateways.nl/en/" target="_blank">
@@ -63,9 +57,6 @@ While PowerHue is primarily designed for use with power usage data, it can be co
   </a>
 </p>
 
-### Installation:
-[![Open Your Home Assistant Instance](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https://raw.githubusercontent.com/rwanrooy/PowerHue/refs/heads/main/ha-blueprints/powerhue_by_smart_gateways.yaml)
-
 ---
 
 ### 💡 Support My Work for the Home Assistant Community
@@ -103,6 +94,9 @@ Your support helps me to:
 Thank you for supporting my passion for smart home automation and helping me bring these ideas to life for everyone to enjoy!
 
 ---
+
+### Installation:
+[![Open Your Home Assistant Instance](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https://raw.githubusercontent.com/rwanrooy/PowerHue/refs/heads/main/ha-blueprints/powerhue_by_smart_gateways.yaml)
 
 ### License Terms:
 1. This blueprint is free for personal and commercial use.
