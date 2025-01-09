@@ -9,7 +9,7 @@ While PowerHue is primarily designed for use with power usage data, it can be co
 
 <p align="center">
   <a href="https://smartgateways.nl/en/" target="_blank">
-    <img src="https://smartgateways.nl/wp-content/uploads/2025/01/PowerHue-logo.png" alt="PowerHue Logo" height="200">
+    <img src="https://smartgateways.nl/wp-content/uploads/2025/01/PowerHue_by_Smart-Gateways.png" alt="PowerHue Logo" height="400">
   </a>
 </p>
 
