@@ -29,7 +29,7 @@ While PowerHue is primarily designed for use with power usage data, it can be co
 ### Requirements:
 - Home Assistant (version 2024 or higher).
 - Compatible light entities that can change color (e.g., RGB lights, Philips HUE, or WLED).
-- A sensor providing real-time power values (e.g., [**Smart Meter**](https://smartgateways.nl/en/read-out-smart-meter-p1-dsmr/) from [**Smart Gateways**](https://smartgateways.nl/en/), solar panel sensor that measures real-time production).
+- A sensor providing real-time power values, temperatures or any other value. (e.g., [**Smart Meter**](https://smartgateways.nl/en/read-out-smart-meter-p1-dsmr/) from [**Smart Gateways**](https://smartgateways.nl/en/), solar panel sensor that measures real-time production).
 
 ### Configuration:
 - **Power Sensor**: The sensor that monitors power values (e.g., a **Smart Meter** or solar panel sensor).
